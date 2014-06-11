@@ -79,8 +79,9 @@ function mm_quiz_validate_answers($form, &$form_state) {
   // to view all form values
   //dsm($form_state['values']);
 
-  // Get all candidates.
+  // Get all candidates
   // Use EntityFieldQuery... google it for other examples.
+  
   // $query = new EntityFieldQuery;
   // $results = $query
   //   ->entityCondition('entity_type', 'node')
