@@ -66,9 +66,25 @@ function mm_quiz_validate_answers($form, &$form_state) {
   // This should be preventing a "save".
   $form_state['rebuild'] = TRUE;
 
-  // Get user's values.
+  // Get user's values
+  $answer_1 = $form_state['values']['field_question_1']['und'][0]['value'];
+  $answer_2 = $form_state['values']['field_question_2']['und'][0]['value'];
+  $answer_3 = $form_state['values']['field_question_3']['und'][0]['value'];
+  print_r($answer_1);
+  print_r($answer_2);
+  print_r($answer_3);
+
+  $answers = array();
+
+    for ($i = 1; $i <= 3; $i++) {
+      $answer = $form_state['values']["field_question_" . $i]['und'][0]['value']; 
+
+      array_push($answers, $answer);
+    }
+  print_r($answers);  
+  
   // Likely from $form_state['values'];
-  dsm($form_state['values']);
+  //dsm($form_state['values']);
 
   // Get all candidates.
   // Use EntityFieldQuery... google it for other examples.
