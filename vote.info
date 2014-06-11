@@ -6,10 +6,13 @@ core = 7.x
 dependencies[] = xn_content_types
 
 ; Custom
+dependencies[] = mm_quiz
 
 ; Contrib
 dependencies[] = admin_menu
 dependencies[] = admin_menu_toolbar
+dependencies[] = strongarm
+
 
 ; Core
 dependencies[] = block
