@@ -1,0 +1,4 @@
+name = Quiz questions and results
+description = Quiz block.
+core = 7.x
+dependencies[] = block

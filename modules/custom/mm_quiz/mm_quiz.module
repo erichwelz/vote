@@ -1,0 +1,89 @@
+<?php
+
+function mm_quiz_block_info() {
+
+  // This is the quiz block
+  $blocks['quiz_form'] = array(
+    'info' => t('Quiz Form'),
+  );
+
+  return $blocks;
+}
+
+function mm_quiz_block_view($delta = '') {
+  // This example is adapted from node.module.
+  $block = array();
+
+  switch ($delta) {
+    case 'quiz_form':
+
+      // Add required 'node' file from node module.
+      module_load_include('inc', 'node', 'node.pages');
+
+      // Define our content type
+      $type = 'candidate';
+
+      // Create a node object... notice the type casting using (object)
+      $node = (object) array(
+        'type' => $type,
+        'language' => LANGUAGE_NONE,
+      );
+
+      // Get the form from drupal using drupal_get_form
+      // NOTE: for node forms we need to send a node object
+      $form = drupal_get_form($type . '_node_form', $node);
+
+      // Define our subject
+      $block['subject'] = t("Mayor Me");
+
+      // Define what the content of our block will be
+      $block['content']['asdf'] = $form;
+      break;
+  }
+  return $block;
+}
+
+function mm_quiz_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'candidate_node_form' && !user_is_logged_in()) {
+    // Hide all fields except the questions.
+    $fields_to_hide = array(
+      'title',
+      'body',
+      'field_link',
+      'field_picture',
+    );
+    foreach ($fields_to_hide as $field) {
+      $form[$field]['#access'] = FALSE;
+    }
+    $form['title']['#value'] = 'User form';
+
+    // Add our validation callback.
+    $form['#validate'][] = 'mm_quiz_validate_answers';
+  }
+}
+
+function mm_quiz_validate_answers($form, &$form_state) {
+  // This should be preventing a "save".
+  $form_state['rebuild'] = TRUE;
+
+  // Get user's values.
+  // Likely from $form_state['values'];
+  dsm($form_state['values']);
+
+  // Get all candidates.
+  // Use EntityFieldQuery... google it for other examples.
+  // $query = new EntityFieldQuery;
+  // $results = $query
+  //   ->entityCondition('entity_type', 'node')
+  //   ->propertyCondition('type', 'candidate')
+  //   ->execute();
+  // dsm($results) to check your results.
+
+  // Compare against each candidate & build results.
+  // You'll likely end up with an array of node IDs,
+  // you'll then likely do node_load($node_id) on each of them.
+  // Then you'll be able to compare the user's answers with these
+  // answers.
+  // As you go through, I'd recommend adding each result to an array.
+  // After all the results are done and the array is built... call me.
+}
