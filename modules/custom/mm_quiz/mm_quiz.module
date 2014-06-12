@@ -81,7 +81,19 @@ function mm_quiz_validate_answers($form, &$form_state) {
 
   // Get all candidates
   // Use EntityFieldQuery... google it for other examples.
-  
+  $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node');
+    $query->entityCondition('bundle', 'candidate');
+  //->propertyCondition('status', 1);
+     //->entityCondition('candidate', 'node');
+  //->fieldOrderBy('field_awesome_factor', 'value', 'DESC')
+
+  $result = $query->execute();
+  dsm('result');
+  dsm($result);
+
+
+
   // $query = new EntityFieldQuery;
   // $results = $query
   //   ->entityCondition('entity_type', 'node')
@@ -89,6 +101,25 @@ function mm_quiz_validate_answers($form, &$form_state) {
   //   ->execute();
   // dsm($results) to check your results.
 
+
+  $nodes = node_load_multiple(array_keys($result['node']));
+  dsm('nodes');
+  dsm($nodes);
+
+  //drilled down into node_1 (candidate(1), answer to question 1
+  $candidate_answer_1_1 = $nodes[1]->{'field_question_1'}['und'][0]['value'];
+
+
+    // $candidate_answers = array();
+
+    // for ($i = 1; $i <= 3; $i++) {
+    //   $candidate_answer = $nodes[1]["field_question_" . $i]['und'][0]['value']; 
+
+    //   array_push($candidate_answers, $candidate_answer);
+    // }
+ 
+  dsm('candidate_answer_1_1');
+  dsm($candidate_answer_1_1);  
   // Compare against each candidate & build results.
   // You'll likely end up with an array of node IDs,
   // you'll then likely do node_load($node_id) on each of them.
