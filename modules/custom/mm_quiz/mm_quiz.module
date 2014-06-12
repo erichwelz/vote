@@ -94,8 +94,8 @@ function mm_quiz_validate_answers($form, &$form_state) {
   // dsm($result);
 
   $nodes = node_load_multiple(array_keys($result['node']));
-  // dsm('nodes');
-  // dsm($nodes);
+  dsm('nodes');
+  dsm($nodes);
 
   //drilled down into node_1 (candidate(1), answer to question 1
   // $candidate_answer_1_1 = $nodes[1]->{'field_question_1'}['und'][0]['value'];
@@ -106,9 +106,19 @@ function mm_quiz_validate_answers($form, &$form_state) {
 
     //$i is candidate number
     //$j is question number
-    $all_candidates_answers = array();
+// THIS IS A TEMPLATE FOR LOOP FOR REFERENCE 
+   // for ($i = 1; $i <= 3; $i++) {
 
-    for ($i = 1; $i <= 3; $i++) {
+   //      $candidate_answers = array();
+   //    for ($j = 1; $j <= 3; $j++) {
+   //      $candidate_answers[] = $nodes[$i]->{"field_question_" . $j}['und'][0]['value'];
+   //    };
+   //      $all_candidates_answers[] = $candidate_answers;
+   //  }
+
+
+    $all_candidates_answers = array();
+    for ($i = 1; $i <= 3; $i++) {    
 
         $candidate_answers = array();
       for ($j = 1; $j <= 3; $j++) {
@@ -121,7 +131,6 @@ function mm_quiz_validate_answers($form, &$form_state) {
   dsm($all_candidates_answers);
 
 
-
 //   if (($user_answers[0]) == (all_candidates_answers[0][0])){
 //   dsm('true')
 // } else{
@@ -129,20 +138,48 @@ function mm_quiz_validate_answers($form, &$form_state) {
 // }
 
 //$candidate_answer = 'b';
-$candidate_answer = $all_candidates_answers[0][0];
 
-$user_answer = $user_answers[0];
+//$i is candidate ref
+for ($i=1; $i <=3; $i++) { 
+      $candidate_name = $nodes[$i]->{"title"};
+      $candidate_photo = $nodes[$i]->field_picture['und'][0]['uri'];
 
- if ($candidate_answer == $user_answer) {
-  dsm('true');
-} else{
-  dsm('false');
+$score = 0;
+ //$j is question index
+  for ($j=0; $j <=2; $j++) { 
+    
+    //Find every $j where $j represents the candidates's answer and put it in a variable of $candidate-answer
+
+    //$i - 1 because node numbers are one higher than array numbers
+    $candidate_answer = $all_candidates_answers[($i - 1)][$j];
+
+    ////Find every $j where $j represents the user's answer and put it in a variable of $user-answer
+    $user_answer = $user_answers[$j];
+
+    //Set a variable of $score that we will add results into
+    
+
+    //Conditional statement comparing candiddate and user answers. 
+    if ($candidate_answer == $user_answer) {
+    $score++;
+
+    }
+
+  } 
+   //NOTE!!! We must change 3 to a variable independent of how many questions there are
+    $percent = $score / 3 * 100;
+    dsm($candidate_name);
+    dsm($candidate_photo);
+    dsm("score");
+    dsm($percent . "%");  
+  //
 }
+
 
 //$user_answers[0] == all_candidates_answers[0][0]
 
   // Compare against each candidate & build results.
-  dsm($user_answers[0]);
+  // dsm($user_answers[0]);
 
   //pseudo code
   // goals:
@@ -159,10 +196,6 @@ $user_answer = $user_answers[0];
   // end
 
   //   percentage = score / num_of_questions
-
-
-
-
 
 
 
