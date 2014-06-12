@@ -143,7 +143,7 @@ function mm_quiz_validate_answers($form, &$form_state) {
 //$i is candidate ref
 for ($i=1; $i <=3; $i++) { 
       $candidate_name = $nodes[$i]->{"title"};
-      $candidate_photo = $nodes[$i]->field_picture['und'][0]['uri'];
+      $candidate_photo = $nodes[$i]->field_picture['und'][0]['filename'];
 
 $score = 0;
  //$j is question index
@@ -172,7 +172,7 @@ $score = 0;
    echo('<h2 class="mm_name">' .$candidate_name. '</h2>');
    // $url_image = url(drupal_realpath($candidate_photo));
 
-   echo('<img src="'. drupal_realpath($candidate_photo) . '"> alt="candidate photo"');
+   echo('<img src="http://localhost/mayorme/sites/default/files/' . $candidate_photo . '">');
    
     $percent = round($score / 3 * 100);
    echo('<h3 class = "mm_score">' . $percent . ' %</h3>');
