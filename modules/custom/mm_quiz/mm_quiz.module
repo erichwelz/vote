@@ -67,14 +67,15 @@ function mm_quiz_validate_answers($form, &$form_state) {
   $form_state['rebuild'] = TRUE;
 
   // Get user's values
-  $answers = array();
+  $user_answers = array();
 
     for ($i = 1; $i <= 3; $i++) {
       $answer = $form_state['values']["field_question_" . $i]['und'][0]['value']; 
 
-      array_push($answers, $answer);
+      array_push($user_answers, $answer);
     }
-  print_r($answers);  
+  dsm('user_answers');
+  dsm($user_answers);  
   
   // to view all form values
   //dsm($form_state['values']);
@@ -89,22 +90,12 @@ function mm_quiz_validate_answers($form, &$form_state) {
   //->fieldOrderBy('field_awesome_factor', 'value', 'DESC')
 
   $result = $query->execute();
-  dsm('result');
-  dsm($result);
-
-
-
-  // $query = new EntityFieldQuery;
-  // $results = $query
-  //   ->entityCondition('entity_type', 'node')
-  //   ->propertyCondition('type', 'candidate')
-  //   ->execute();
-  // dsm($results) to check your results.
-
+  // dsm('result');
+  // dsm($result);
 
   $nodes = node_load_multiple(array_keys($result['node']));
-  dsm('nodes');
-  dsm($nodes);
+  // dsm('nodes');
+  // dsm($nodes);
 
   //drilled down into node_1 (candidate(1), answer to question 1
   // $candidate_answer_1_1 = $nodes[1]->{'field_question_1'}['und'][0]['value'];
@@ -122,19 +113,63 @@ function mm_quiz_validate_answers($form, &$form_state) {
         $candidate_answers = array();
       for ($j = 1; $j <= 3; $j++) {
         $candidate_answers[] = $nodes[$i]->{"field_question_" . $j}['und'][0]['value'];
-
       };
         $all_candidates_answers[] = $candidate_answers;
     }
  
-  //dsm('candidate_answer_1_1');
-
+  dsm('all_candidates_answers');
   dsm($all_candidates_answers);
+
+
+
+//   if (($user_answers[0]) == (all_candidates_answers[0][0])){
+//   dsm('true')
+// } else{
+//   dsm('false')
+// }
+
+//$candidate_answer = 'b';
+$candidate_answer = $all_candidates_answers[0][0];
+
+$user_answer = $user_answers[0];
+
+ if ($candidate_answer == $user_answer) {
+  dsm('true');
+} else{
+  dsm('false');
+}
+
+//$user_answers[0] == all_candidates_answers[0][0]
+
   // Compare against each candidate & build results.
-  // You'll likely end up with an array of node IDs,
-  // you'll then likely do node_load($node_id) on each of them.
+  dsm($user_answers[0]);
+
+  //pseudo code
+  // goals:
+  // compare results to one candidate
+  // calculate a 'score'
+
+  // scoring mvp
+  //   score = 0
+
+  //     for each (step 2)
+
+  // if ["user_q" . $i][answer] == ["candidate_" . $i][answer]
+  //   score++
+  // end
+
+  //   percentage = score / num_of_questions
+
+
+
+
+
+
+
   // Then you'll be able to compare the user's answers with these
   // answers.
+
+
   // As you go through, I'd recommend adding each result to an array.
   // After all the results are done and the array is built... call me.
 }
