@@ -107,19 +107,29 @@ function mm_quiz_validate_answers($form, &$form_state) {
   dsm($nodes);
 
   //drilled down into node_1 (candidate(1), answer to question 1
-  $candidate_answer_1_1 = $nodes[1]->{'field_question_1'}['und'][0]['value'];
+  // $candidate_answer_1_1 = $nodes[1]->{'field_question_1'}['und'][0]['value'];
 
+  // $candidate_answer_1_2 = $nodes[1]->{'field_question_2'}['und'][0]['value'];
 
-    // $candidate_answers = array();
+  // $candidate_answer_1_3 = $nodes[1]->{'field_question_3'}['und'][0]['value'];
 
-    // for ($i = 1; $i <= 3; $i++) {
-    //   $candidate_answer = $nodes[1]["field_question_" . $i]['und'][0]['value']; 
+    //$i is candidate number
+    //$j is question number
+    $all_candidates_answers = array();
 
-    //   array_push($candidate_answers, $candidate_answer);
-    // }
+    for ($i = 1; $i <= 3; $i++) {
+
+        $candidate_answers = array();
+      for ($j = 1; $j <= 3; $j++) {
+        $candidate_answers[] = $nodes[$i]->{"field_question_" . $j}['und'][0]['value'];
+
+      };
+        $all_candidates_answers[] = $candidate_answers;
+    }
  
-  dsm('candidate_answer_1_1');
-  dsm($candidate_answer_1_1);  
+  //dsm('candidate_answer_1_1');
+
+  dsm($all_candidates_answers);
   // Compare against each candidate & build results.
   // You'll likely end up with an array of node IDs,
   // you'll then likely do node_load($node_id) on each of them.
