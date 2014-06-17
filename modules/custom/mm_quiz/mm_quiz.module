@@ -82,11 +82,7 @@ function mm_quiz_validate_answers($form, &$form_state) {
   $user_answers = mm_quiz_get_user_answers($form_state, $num_qs);
 
   // Get all candidates information
-  $all_candidates_info = mm_quiz_get_all_candidates_info();
-
-
-  // Get all candidates answers
-  $all_candidates_answers = mm_quiz_get_all_candidates_answers($all_candidates_info, $num_qs, $num_cs);
+  $all_candidates_info = mm_quiz_get_all_candidates_info($num_cs, $num_qs);
 
   // Compare answers.
   // Set results to form_state array.
@@ -94,36 +90,36 @@ function mm_quiz_validate_answers($form, &$form_state) {
   // Calculate & Display results.
 
     //$i is candidate ref
-  for ($i = 1; $i <= $num_cs; $i++) { 
-    $candidate_name = $all_candidates_info[$i]->{"title"};
-    $candidate_photo = $all_candidates_info[$i]->field_picture['und'][0]['uri'];
-    //sets score for given candidate    
-    $score = 0;
-    //$ j - 1 is question index [array]
-    for ($j = 0; $j <= ($num_qs - 1); $j++) { 
+  // for ($i = 1; $i <= $num_cs; $i++) { 
+  //   $candidate_name = $all_candidates_info[$i]->{"title"};
+  //   $candidate_photo = $all_candidates_info[$i]->field_picture['und'][0]['uri'];
+  //   //sets score for given candidate    
+  //   $score = 0;
+  //   //$ j - 1 is question index [array]
+  //   for ($j = 0; $j <= ($num_qs - 1); $j++) { 
 
-      //$i - 1 [array]
-      $candidate_answer = $all_candidates_answers[($i - 1)][$j];
+  //     //$i - 1 [array]
+  //     $candidate_answer = $all_candidates_answers[($i - 1)][$j];
 
-      //$j represents the user answer's array and put it in a variable of $user_answers
-      $user_answer = $user_answers[$j];
+  //     //$j represents the user answer's array and put it in a variable of $user_answers
+  //     $user_answer = $user_answers[$j];
 
-      if ($candidate_answer == $user_answer) { 
-        $score++; 
-      }
-    }
-      // output name, photo, percent
+  //     if ($candidate_answer == $user_answer) { 
+  //       $score++; 
+  //     }
+  //   }
+  //     // output name, photo, percent
 
 
-        //displays score for current candidate to screen
-    echo('<h2 class="mm_name">' .$candidate_name. '</h2>');
-           // $url_image = url(drupal_realpath($candidate_photo));
+  //       //displays score for current candidate to screen
+  //   echo('<h2 class="mm_name">' .$candidate_name. '</h2>');
+  //          // $url_image = url(drupal_realpath($candidate_photo));
 
-    echo('<img src="'. drupal_realpath($candidate_photo) . '"> alt="candidate photo"');
+  //   echo('<img src="'. drupal_realpath($candidate_photo) . '"> alt="candidate photo"');
 
-    $percent = round($score / $num_qs * 100);
-    echo('<h3 class = "mm_score">' . $percent . ' %</h3>');
-  }
+  //   $percent = round($score / $num_qs * 100);
+  //   echo('<h3 class = "mm_score">' . $percent . ' %</h3>');
+  // }
 }
 
 function mm_quiz_get_num_qs() {
@@ -145,40 +141,25 @@ function mm_quiz_get_user_answers($form_state, $num_qs) {
    return $user_answers;
 }
 
- 
-function mm_quiz_get_all_candidates_info(){
+
+function mm_quiz_get_all_candidates_info($num_cs, $num_qs){
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node');
   $query->entityCondition('bundle', 'candidate');
 
   $result = $query->execute();
 
-  $all_candidates_info = node_load_multiple(array_keys($result['node']));
+  $candidates_info = node_load_multiple(array_keys($result['node']));
 
-
-
-  // dsm ('all_candidates_info');
-  // dsm ($all_candidates_info); 
-
-  return $all_candidates_info;
+  $all_candidates_info = array();
+  for ($i = 1; $i <= $num_cs; $i++) { 
+    $all_candidates_info[$i]['name'] = $candidates_info[$i]->{"title"};
+    $all_candidates_info[$i]['photo'] = $candidates_info[$i]->field_picture['und'][0]['uri'];
+    for ($j = 1; $j <= $num_qs; $j++) {
+    $all_candidates_info[$i]['answer'][$j] = $candidates_info[$i]->{"field_question_" . $j}['und'][0]['value'];
+    }
 }
-
-function mm_quiz_get_all_candidates_answers($all_candidates_info, $num_qs, $num_cs){ 
-  dsm ('all_candidates_info_ans_func');
+  dsm ('all_candidates_info');
   dsm ($all_candidates_info); 
 
-  // $i selects candidate
-  $all_candidates_answers = array();
-  for ($i = 1; $i <= $num_cs; $i++) {    
-    // $j selects questions #
-    $candidate_answers = array();
-    for ($j = 1; $j <= $num_qs; $j++) {
-      $candidate_answers[] = $all_candidates_info[$i]->{"field_question_" . $j}['und'][0]['value'];
-    };
-    $all_candidates_answers[] = $candidate_answers;
-  } 
-  // dsm ('all_candidates_answers');
-  // dsm ($all_candidates_answers); 
-
-  return $all_candidates_answers;
 }
