@@ -109,7 +109,6 @@ function mm_quiz_get_user_answers($form_state, $num_qs) {
    return $user_answers;
 }
 
-
 function mm_quiz_get_all_candidates_info($num_cs, $num_qs){
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node');
@@ -132,9 +131,9 @@ function mm_quiz_get_all_candidates_info($num_cs, $num_qs){
 
 function mm_quiz_get_all_scores($num_cs, $num_qs, &$all_candidates_info, $user_answers){
   
-    for ($i = 1; $i <= $num_cs; $i++) {  
-    // sets score for given candidate    
-    $score = 0;
+  for ($i = 1; $i <= $num_cs; $i++) {  
+  // sets score for given candidate    
+  $score = 0;
     //$ j is question index
     for ($j = 1; $j <= ($num_qs); $j++) { 
 
@@ -155,9 +154,15 @@ function mm_quiz_get_all_scores($num_cs, $num_qs, &$all_candidates_info, $user_a
   
 }
 
+function sort_scores($a, $b) {
+  return ($a["score"] < $b["score"]);
+} 
 
 function mm_quiz_display_results($all_candidates_info){
     
+ // sort by highest score
+ 
+   usort($all_candidates_info, "sort_scores");
 
     foreach($all_candidates_info as $candidate) {
     
