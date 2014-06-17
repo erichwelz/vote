@@ -1,6 +1,5 @@
 <?php
 
-
 function mm_quiz_block_info() {
 
   // This is the quiz block
@@ -67,22 +66,20 @@ function mm_quiz_validate_answers($form, &$form_state) {
   // This should be preventing a "save".
   $form_state['rebuild'] = TRUE;
 
+
+  //DEFAULTS
+  $num_qs = 4; //set number of questions in candidate survey
+
   // Get user's values
   $user_answers = array();
 
-    for ($i = 1; $i <= 3; $i++) {
+    for ($i = 1; $i <= $num_qs; $i++) {
       $answer = $form_state['values']["field_question_" . $i]['und'][0]['value']; 
 
       array_push($user_answers, $answer);
     }
-  // dsm('user_answers');
-  // dsm($user_answers);  
-  
-  // to view all form values
-  //dsm($form_state['values']);
-
-  // Get all candidates
-  // Use EntityFieldQuery... google it for other examples.
+ 
+  //  getting all candidates
   $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', 'node');
     $query->entityCondition('bundle', 'candidate');
@@ -91,124 +88,55 @@ function mm_quiz_validate_answers($form, &$form_state) {
   //->fieldOrderBy('field_awesome_factor', 'value', 'DESC')
 
   $result = $query->execute();
-  // dsm('result');
-  // dsm($result);
 
   $nodes = node_load_multiple(array_keys($result['node']));
-  // dsm('nodes');
-  // dsm($nodes);
-
-  //drilled down into node_1 (candidate(1), answer to question 1
-  // $candidate_answer_1_1 = $nodes[1]->{'field_question_1'}['und'][0]['value'];
-
-  // $candidate_answer_1_2 = $nodes[1]->{'field_question_2'}['und'][0]['value'];
-
-  // $candidate_answer_1_3 = $nodes[1]->{'field_question_3'}['und'][0]['value'];
-
-    //$i is candidate number
-    //$j is question number
-// THIS IS A TEMPLATE FOR LOOP FOR REFERENCE 
-   // for ($i = 1; $i <= 3; $i++) {
-
-   //      $candidate_answers = array();
-   //    for ($j = 1; $j <= 3; $j++) {
-   //      $candidate_answers[] = $nodes[$i]->{"field_question_" . $j}['und'][0]['value'];
-   //    };
-   //      $all_candidates_answers[] = $candidate_answers;
-   //  }
-
-
+ 
+    //$i selects candidate
     $all_candidates_answers = array();
     for ($i = 1; $i <= 3; $i++) {    
-
+      //$j selects questions #
         $candidate_answers = array();
-      for ($j = 1; $j <= 3; $j++) {
+      for ($j = 1; $j <= $num_qs; $j++) {
         $candidate_answers[] = $nodes[$i]->{"field_question_" . $j}['und'][0]['value'];
       };
         $all_candidates_answers[] = $candidate_answers;
-    }
- 
-  // dsm('all_candidates_answers');
-  // dsm($all_candidates_answers);
+    } 
 
+  dsm('user_answers');
+  dsm($user_answers); 
 
-//   if (($user_answers[0]) == (all_candidates_answers[0][0])){
-//   dsm('true')
-// } else{
-//   dsm('false')
-// }
+  dsm('all_candidates_answers');
+  dsm($all_candidates_answers);
 
-//$candidate_answer = 'b';
+    //$i is candidate ref
+  for ($i=1; $i <=3; $i++) { 
+        $candidate_name = $nodes[$i]->{"title"};
+        $candidate_photo = $nodes[$i]->field_picture['und'][0]['uri'];
+    //sets score for given candidate    
+    $score = 0;
+    //$ j - 1 is question index [array]
+    for ($j=0; $j <= ($num_qs - 1); $j++) { 
+      
+      //$i - 1 [array]
+      $candidate_answer = $all_candidates_answers[($i - 1)][$j];
 
-//$i is candidate ref
-for ($i=1; $i <=3; $i++) { 
-      $candidate_name = $nodes[$i]->{"title"};
-      $candidate_photo = $nodes[$i]->field_picture['und'][0]['uri'];
+      //$j represents the user answer's array and put it in a variable of $user_answers
+      $user_answer = $user_answers[$j];
 
-$score = 0;
- //$j is question index
-  for ($j=0; $j <=2; $j++) { 
-    
-    //Find every $j where $j represents the candidates's answer and put it in a variable of $candidate-answer
-
-    //$i - 1 because node numbers are one higher than array numbers
-    $candidate_answer = $all_candidates_answers[($i - 1)][$j];
-
-    ////Find every $j where $j represents the user's answer and put it in a variable of $user-answer
-    $user_answer = $user_answers[$j];
-
-    //Set a variable of $score that we will add results into
-    
-
-    //Conditional statement comparing candiddate and user answers. 
-    if ($candidate_answer == $user_answer) {
-    $score++;
-
+        if ($candidate_answer == $user_answer) { 
+        $score++; 
+        }
     }
 
-  } 
-   //NOTE!!! We must change 3 to a variable independent of how many questions there are
-    
-   echo('<h2 class="mm_name">' .$candidate_name. '</h2>');
-   // $url_image = url(drupal_realpath($candidate_photo));
+      dsm('score');  
+      dsm($score);
 
-   echo('<img src="'. drupal_realpath($candidate_photo) . '"> alt="candidate photo"');
-   
-    $percent = round($score / 3 * 100);
-   echo('<h3 class = "mm_score">' . $percent . ' %</h3>');
-    // dsm("score");
-    // dsm($percent . "%");  
-  //
-}
+           echo('<h2 class="mm_name">' .$candidate_name. '</h2>');
+           // $url_image = url(drupal_realpath($candidate_photo));
 
-
-//$user_answers[0] == all_candidates_answers[0][0]
-
-  // Compare against each candidate & build results.
-  // dsm($user_answers[0]);
-
-  //pseudo code
-  // goals:
-  // compare results to one candidate
-  // calculate a 'score'
-
-  // scoring mvp
-  //   score = 0
-
-  //     for each (step 2)
-
-  // if ["user_q" . $i][answer] == ["candidate_" . $i][answer]
-  //   score++
-  // end
-
-  //   percentage = score / num_of_questions
-
-
-
-  // Then you'll be able to compare the user's answers with these
-  // answers.
-
-
-  // As you go through, I'd recommend adding each result to an array.
-  // After all the results are done and the array is built... call me.
+           echo('<img src="'. drupal_realpath($candidate_photo) . '"> alt="candidate photo"');
+           
+            $percent = round($score / $num_qs * 100);
+           echo('<h3 class = "mm_score">' . $percent . ' %</h3>');
+  }
 }
