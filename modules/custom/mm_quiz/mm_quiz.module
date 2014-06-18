@@ -63,7 +63,7 @@ function mm_quiz_form_alter(&$form, &$form_state, $form_id) {
     // Check form state for candidate results.
     // Display results.
     $form['results'] = array(
-      '#markup' => '<h1>This is my thing!</h1>',
+      '#markup' => '<h1>Mayor Me Logo</h1>',
     );
   }
 }
@@ -75,16 +75,13 @@ function mm_quiz_validate_answers($form, &$form_state) {
   // get number of question in survey
   $num_qs = mm_quiz_get_num_qs();
 
-  // get number of candidates
-  $num_cs = mm_quiz_get_num_cs();
-
   // Get user's answers.
   $user_answers = mm_quiz_get_user_answers($form_state, $num_qs);
 
   // Get all candidates information
-  $all_candidates_info = mm_quiz_get_all_candidates_info($num_cs, $num_qs);
+  $all_candidates_info = mm_quiz_get_all_candidates_info($num_qs);
 
-  mm_quiz_get_all_scores($num_cs, $num_qs, $all_candidates_info, $user_answers);
+  mm_quiz_get_all_scores($num_qs, $all_candidates_info, $user_answers);
 
   // Calculate & Display results.
   mm_quiz_display_results($all_candidates_info);
@@ -92,10 +89,6 @@ function mm_quiz_validate_answers($form, &$form_state) {
 
 function mm_quiz_get_num_qs() {
   return 4;
-}
-
-function mm_quiz_get_num_cs() {
-  return 3;
 }
 
 function mm_quiz_get_user_answers($form_state, $num_qs) {
@@ -109,7 +102,7 @@ function mm_quiz_get_user_answers($form_state, $num_qs) {
    return $user_answers;
 }
 
-function mm_quiz_get_all_candidates_info($num_cs, $num_qs){
+function mm_quiz_get_all_candidates_info($num_qs){
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node');
   $query->entityCondition('bundle', 'candidate');
@@ -119,19 +112,19 @@ function mm_quiz_get_all_candidates_info($num_cs, $num_qs){
   $candidates_info = node_load_multiple(array_keys($result['node']));
 
   $all_candidates_info = array();
-  for ($i = 1; $i <= $num_cs; $i++) { 
+  for ($i = 1; $i <= count($candidates_info); $i++) { 
     $all_candidates_info[$i]['name'] = $candidates_info[$i]->{"title"};
     $all_candidates_info[$i]['photo'] = $candidates_info[$i]->field_picture['und'][0]['uri'];
     for ($j = 1; $j <= $num_qs; $j++) {
     $all_candidates_info[$i]['answer'][$j] = $candidates_info[$i]->{"field_question_" . $j}['und'][0]['value'];
     }
 }
-  return($all_candidates_info);
+  return $all_candidates_info ;
 }
 
-function mm_quiz_get_all_scores($num_cs, $num_qs, &$all_candidates_info, $user_answers){
+function mm_quiz_get_all_scores($num_qs, &$all_candidates_info, $user_answers){
   
-  for ($i = 1; $i <= $num_cs; $i++) {  
+  for ($i = 1; $i <= count($all_candidates_info); $i++) {  
   // sets score for given candidate    
   $score = 0;
     //$ j is question index
