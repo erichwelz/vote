@@ -127,6 +127,35 @@ function xn_content_types_field_default_field_bases() {
     'type' => 'list_text',
   );
 
+  // Exported field_base: 'field_question_10'
+  $field_bases['field_question_10'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_question_10',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'a' => 'a) Strongly Agree',
+        'b' => 'b) Agree',
+        'c' => 'c) Neutral',
+        'd' => 'd) Disagree',
+        'e' => 'e) Strongly Disagree',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_question_2'
   $field_bases['field_question_2'] = array(
     'active' => 1,
@@ -163,6 +192,180 @@ function xn_content_types_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_question_3',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'a' => 'a) Strongly Agree',
+        'b' => 'b) Agree',
+        'c' => 'c) Neutral',
+        'd' => 'd) Disagree',
+        'e' => 'e) Strongly Disagree',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_question_4'
+  $field_bases['field_question_4'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_question_4',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'a' => 'a) Strongly Agree',
+        'b' => 'b) Agree',
+        'c' => 'c) Neutral',
+        'd' => 'd) Disagree',
+        'e' => 'e) Strongly Disagree',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_question_5'
+  $field_bases['field_question_5'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_question_5',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'a' => 'a) Strongly Agree',
+        'b' => 'b) Agree',
+        'c' => 'c) Neutral',
+        'd' => 'd) Disagree',
+        'e' => 'e) Strongly Disagree',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_question_6'
+  $field_bases['field_question_6'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_question_6',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'a' => 'a) Strongly Agree',
+        'b' => 'b) Agree',
+        'c' => 'c) Neutral',
+        'd' => 'd) Disagree',
+        'e' => 'e) Strongly Disagree',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_question_7'
+  $field_bases['field_question_7'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_question_7',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'a' => 'a) Strongly Agree',
+        'b' => 'b) Agree',
+        'c' => 'c) Neutral',
+        'd' => 'd) Disagree',
+        'e' => 'e) Strongly Disagree',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_question_8'
+  $field_bases['field_question_8'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_question_8',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'a' => 'a) Strongly Agree',
+        'b' => 'b) Agree',
+        'c' => 'c) Neutral',
+        'd' => 'd) Disagree',
+        'e' => 'e) Strongly Disagree',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_question_9'
+  $field_bases['field_question_9'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_question_9',
     'foreign keys' => array(),
     'indexes' => array(
       'value' => array(

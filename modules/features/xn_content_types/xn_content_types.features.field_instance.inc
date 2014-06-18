@@ -172,7 +172,7 @@ function xn_content_types_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_question_1',
-    'label' => 'Question_1',
+    'label' => '1. The federal government subsidize the production and consumption of renewable energy sources.',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -183,6 +183,43 @@ function xn_content_types_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-candidate-field_question_10'
+  $field_instances['node-candidate-field_question_10'] = array(
+    'bundle' => 'candidate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 12,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_question_10',
+    'label' => 'Question_10',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 13,
     ),
   );
 
@@ -209,7 +246,7 @@ function xn_content_types_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_question_2',
-    'label' => 'Question_2',
+    'label' => '2. Prescription drugs be covered under Canada’s universal healthcare plan.',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -260,17 +297,247 @@ function xn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-candidate-field_question_4'
+  $field_instances['node-candidate-field_question_4'] = array(
+    'bundle' => 'candidate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Issue 4 should be considered a priority going forward',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_question_4',
+    'label' => 'Question_4',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-candidate-field_question_5'
+  $field_instances['node-candidate-field_question_5'] = array(
+    'bundle' => 'candidate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_question_5',
+    'label' => 'Question_5',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-candidate-field_question_6'
+  $field_instances['node-candidate-field_question_6'] = array(
+    'bundle' => 'candidate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_question_6',
+    'label' => 'Question_6',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-candidate-field_question_7'
+  $field_instances['node-candidate-field_question_7'] = array(
+    'bundle' => 'candidate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 9,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_question_7',
+    'label' => 'Question_7',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'node-candidate-field_question_8'
+  $field_instances['node-candidate-field_question_8'] = array(
+    'bundle' => 'candidate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_question_8',
+    'label' => '8. Canada should raise the tax rate for corporations.',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'node-candidate-field_question_9'
+  $field_instances['node-candidate-field_question_9'] = array(
+    'bundle' => 'candidate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_question_9',
+    'label' => 'Question_9',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 12,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
+  t('1. The federal government subsidize the production and consumption of renewable energy sources.');
+  t('2. Prescription drugs be covered under Canada’s universal healthcare plan.');
+  t('8. Canada should raise the tax rate for corporations.');
   t('Biography');
   t('Issue 1 should be considered a priority going forward');
   t('Issue 2 should be considered a priority going forward');
   t('Issue 3 should be considered a priority going forward');
+  t('Issue 4 should be considered a priority going forward');
   t('Link');
   t('Picture');
-  t('Question_1');
-  t('Question_2');
+  t('Question_10');
   t('Question_3');
+  t('Question_4');
+  t('Question_5');
+  t('Question_6');
+  t('Question_7');
+  t('Question_9');
   t('Url');
 
   return $field_instances;
