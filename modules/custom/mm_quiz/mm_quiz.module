@@ -38,11 +38,11 @@ function mm_quiz_block_view($delta = '') {
 
       // Define what the content of our block will be
     $block['content']['other_thing'] = array(
-      '#markup' => '<h1>time = ' . date('r') .'</h1>',
+      '#markup' => '<h1>Right below Header</h1>',
       '#weight' => -999,
     );
     $block['content']['thing'] = array(
-      '#markup' => '<h1>Yeahhhh</h1>',
+      '#markup' => '<h1>Footer here</h1>',
       '#weight' => 999,
     );
     $block['content']['erich'] = $form;
@@ -76,8 +76,8 @@ function mm_quiz_form_alter(&$form, &$form_state, $form_id) {
         '#weight' => 999,
       );
     }
-    dsm('form');
-    dsm($form);
+    // dsm('form');
+    // dsm($form);
   }
 }
 
@@ -144,8 +144,8 @@ function mm_quiz_get_all_candidates_info($num_qs){
     }
 
   }
-  dsm('all_candidates_info');
-  dsm($all_candidates_info);
+  // dsm('all_candidates_info');
+  // dsm($all_candidates_info);
 
   return $all_candidates_info ;
 }
