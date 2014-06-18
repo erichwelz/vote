@@ -121,10 +121,17 @@ function mm_quiz_get_all_candidates_info($num_qs){
     $all_candidates_info[$i]['name'] = $candidates_info[$i]->{"title"};
     $all_candidates_info[$i]['photo'] = $candidates_info[$i]->field_picture['und'][0]['uri'];
     $all_candidates_info[$i]['node_id'] = $candidates_info[$i]->{'nid'};
+    $all_candidates_info[$i]['biography'] = $candidates_info[$i]->{'body'}['und'][0]['value']; 
+    $all_candidates_info[$i]['summary'] = $candidates_info[$i]->{'body'}['und'][0]['summary']; 
+
     for ($j = 1; $j <= $num_qs; $j++) {
     $all_candidates_info[$i]['answer'][$j] = $candidates_info[$i]->{"field_question_" . $j}['und'][0]['value'];
     }
+
 }
+  dsm('all_candidates_info');
+  dsm($all_candidates_info);
+
   return $all_candidates_info ;
 }
 
