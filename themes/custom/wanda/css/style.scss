@@ -24,14 +24,14 @@ main {
 	left: 0;
 
 }
-main:before {
-	content: '';
+
+footer {
+	position: fixed;
+	bottom: 0;
+	background: blue;
 	
 }
 
-main:before:before{
-
-}
 
 
 
