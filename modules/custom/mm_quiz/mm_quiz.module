@@ -114,8 +114,6 @@ function mm_quiz_get_all_candidates_info($num_qs){
   // dsm('candidates_info');
   // dsm($candidates_info);
 
-
-
   $all_candidates_info = array();
   for ($i = 1; $i <= count($candidates_info); $i++) { 
     $all_candidates_info[$i]['name'] = $candidates_info[$i]->{"title"};
