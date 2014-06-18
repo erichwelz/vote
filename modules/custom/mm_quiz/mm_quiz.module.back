@@ -1,0 +1,178 @@
+<?php
+
+function mm_quiz_block_info() {
+
+  // This is the quiz block
+  $blocks['quiz_form'] = array(
+    'info' => t('Quiz Form'),
+    );
+
+  return $blocks;
+}
+
+function mm_quiz_block_view($delta = '') {
+  // This example is adapted from node.module.
+  $block = array();
+
+  switch ($delta) {
+    case 'quiz_form':
+
+      // Add required 'node' file from node module.
+    module_load_include('inc', 'node', 'node.pages');
+
+      // Define our content type
+    $type = 'candidate';
+
+      // Create a node object... notice the type casting using (object)
+    $node = (object) array(
+      'type' => $type,
+      'language' => LANGUAGE_NONE,
+      );
+
+      // Get the form from drupal using drupal_get_form
+      // NOTE: for node forms we need to send a node object
+    $form = drupal_get_form($type . '_node_form', $node);
+
+      // Define our subject
+    $block['subject'] = t("Mayor Me");
+
+      // Define what the content of our block will be
+    $block['content']['asdf'] = $form;
+    break;
+  }
+  return $block;
+}
+
+function mm_quiz_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'candidate_node_form' && !user_is_logged_in()) {
+    // Hide all fields except the questions.
+    $fields_to_hide = array(
+      'title',
+      'body',
+      'field_link',
+      'field_picture',
+      );
+    foreach ($fields_to_hide as $field) {
+      $form[$field]['#access'] = FALSE;
+    }
+    $form['title']['#value'] = 'User form';
+
+    // Add our validation callback.
+    $form['#validate'][] = 'mm_quiz_validate_answers';
+
+    // Check form state for candidate results.
+    // Display results.
+    $form['results'] = array(
+      '#markup' => '<h1>This is my thing!</h1>',
+    );
+  }
+}
+
+function mm_quiz_validate_answers($form, &$form_state) {
+  // This should be preventing a "save".
+  $form_state['rebuild'] = TRUE;
+
+  // get number of question in survey
+  $num_qs = mm_quiz_get_num_qs();
+
+  // get number of candidates
+  $num_cs = mm_quiz_get_num_cs();
+
+  // Get user's answers.
+  $user_answers = mm_quiz_get_user_answers($form_state, $num_qs);
+
+  // Get all candidates information
+  $all_candidates_info = mm_quiz_get_all_candidates_info($num_cs, $num_qs);
+
+  mm_quiz_get_all_scores($num_cs, $num_qs, $all_candidates_info, $user_answers);
+
+  // Calculate & Display results.
+  mm_quiz_display_results($all_candidates_info);
+}
+
+function mm_quiz_get_num_qs() {
+  return 4;
+}
+
+function mm_quiz_get_num_cs() {
+  return 3;
+}
+
+function mm_quiz_get_user_answers($form_state, $num_qs) {
+  $user_answers = array();
+
+  for ($i = 1; $i <= $num_qs; $i++) {
+    $answer = $form_state['values']["field_question_" . $i]['und'][0]['value']; 
+
+    array_push($user_answers, $answer);
+  } 
+   return $user_answers;
+}
+
+function mm_quiz_get_all_candidates_info($num_cs, $num_qs){
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node');
+  $query->entityCondition('bundle', 'candidate');
+
+  $result = $query->execute();
+
+  $candidates_info = node_load_multiple(array_keys($result['node']));
+
+  $all_candidates_info = array();
+  for ($i = 1; $i <= $num_cs; $i++) { 
+    $all_candidates_info[$i]['name'] = $candidates_info[$i]->{"title"};
+    $all_candidates_info[$i]['photo'] = $candidates_info[$i]->field_picture['und'][0]['uri'];
+    for ($j = 1; $j <= $num_qs; $j++) {
+    $all_candidates_info[$i]['answer'][$j] = $candidates_info[$i]->{"field_question_" . $j}['und'][0]['value'];
+    }
+}
+  return($all_candidates_info);
+}
+
+function mm_quiz_get_all_scores($num_cs, $num_qs, &$all_candidates_info, $user_answers){
+  
+  for ($i = 1; $i <= $num_cs; $i++) {  
+  // sets score for given candidate    
+  $score = 0;
+    //$ j is question index
+    for ($j = 1; $j <= ($num_qs); $j++) { 
+
+      //$i - 1
+      $candidate_answer = $all_candidates_info[$i]['answer'][$j];
+
+      //$j represents the user answer's array and put it in a variable of $user_answers
+      $user_answer = $user_answers[$j - 1];
+
+      if ($candidate_answer == $user_answer) { 
+        $score++; 
+
+      } $all_candidates_info[$i]['score'] = round($score / $num_qs * 100);
+    } 
+  } 
+  dsm ('all_candidates_info');
+  dsm ($all_candidates_info); 
+  
+}
+
+function sort_scores($a, $b) {
+  return ($a["score"] < $b["score"]);
+} 
+
+function mm_quiz_display_results($all_candidates_info){
+    
+ // sort by highest score
+ 
+   usort($all_candidates_info, "sort_scores");
+
+    foreach($all_candidates_info as $candidate) {
+    
+    echo('<h2 class="mm_name">' .$candidate['name']. '</h2>');
+           // $url_image = url(drupal_realpath($candidate_photo));
+
+    echo('<img src="'. drupal_realpath($candidate['photo']) . '"> alt="candidate photo"');
+
+    echo('<h3 class = "mm_score">' . $candidate['score'] . ' %</h3>');
+  }
+}
+
+
