@@ -1,5 +1,5 @@
-name = Will You Mayor Me? 
-description = A theme that makes urban politics sexy.
+name = Wanda Sub-theme
+description = A Theme Called Wanda
 core = 7.x
 base theme = bootstrap
 
@@ -53,7 +53,7 @@ stylesheets[all][] = css/style.css
 ; scripts[] = 'bootstrap/js/transition.js'
 ;
 ; ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
-settings[bootstrap_cdn] = ''
+; settings[bootstrap_cdn] = ''
 
 
 ; ;-------------------------
