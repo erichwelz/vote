@@ -78,8 +78,10 @@
 
   <h1>Will You Mayor Me?</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim veritatis repellat culpa doloremque totam sunt eius fugiat libero, optio. Obcaecati eaque rem cumque, earum est aperiam eos sit laboriosam labore!</p>
+  <a href="#questions"><button>Mayor Me!</button></a>
 </header>
-<main>
+
+<main id="questions">
   <section<?php print $content_column_class; ?>>
   <?php if (!empty($page['highlighted'])): ?>
     <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
