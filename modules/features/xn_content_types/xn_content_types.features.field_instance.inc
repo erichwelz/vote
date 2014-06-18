@@ -181,7 +181,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 4,
     ),
   );
@@ -218,7 +218,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 13,
     ),
   );
@@ -255,7 +255,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 5,
     ),
   );
@@ -292,7 +292,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 6,
     ),
   );
@@ -329,7 +329,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 7,
     ),
   );
@@ -366,7 +366,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 8,
     ),
   );
@@ -403,7 +403,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 9,
     ),
   );
@@ -440,7 +440,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 10,
     ),
   );
@@ -477,7 +477,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 11,
     ),
   );
@@ -514,7 +514,7 @@ function xn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 12,
     ),
   );
