@@ -88,7 +88,7 @@ function mm_quiz_validate_answers($form, &$form_state) {
 }
 
 function mm_quiz_get_num_qs() {
-  return 4;
+  return 10;
 }
 
 function mm_quiz_get_user_answers($form_state, $num_qs) {
@@ -111,10 +111,16 @@ function mm_quiz_get_all_candidates_info($num_qs){
 
   $candidates_info = node_load_multiple(array_keys($result['node']));
 
+  // dsm('candidates_info');
+  // dsm($candidates_info);
+
+
+
   $all_candidates_info = array();
   for ($i = 1; $i <= count($candidates_info); $i++) { 
     $all_candidates_info[$i]['name'] = $candidates_info[$i]->{"title"};
     $all_candidates_info[$i]['photo'] = $candidates_info[$i]->field_picture['und'][0]['uri'];
+    $all_candidates_info[$i]['node_id'] = $candidates_info[$i]->{'nid'};
     for ($j = 1; $j <= $num_qs; $j++) {
     $all_candidates_info[$i]['answer'][$j] = $candidates_info[$i]->{"field_question_" . $j}['und'][0]['value'];
     }
@@ -142,8 +148,8 @@ function mm_quiz_get_all_scores($num_qs, &$all_candidates_info, $user_answers){
       } $all_candidates_info[$i]['score'] = round($score / $num_qs * 100);
     } 
   } 
-  dsm ('all_candidates_info');
-  dsm ($all_candidates_info); 
+  // dsm ('all_candidates_info');
+  // dsm ($all_candidates_info); 
   
 }
 
@@ -158,14 +164,12 @@ function mm_quiz_display_results($all_candidates_info){
    usort($all_candidates_info, "sort_scores");
 
     foreach($all_candidates_info as $candidate) {
-    
-    echo('<h2 class="mm_name">' .$candidate['name']. '</h2>');
-           // $url_image = url(drupal_realpath($candidate_photo));
+        
+    echo "<h2 class='mm_name'><a href=/node/" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>';  
 
     echo('<img src="'. drupal_realpath($candidate['photo']) . '"> alt="candidate photo"');
 
     echo('<h3 class = "mm_score">' . $candidate['score'] . ' %</h3>');
   }
 }
-
 
