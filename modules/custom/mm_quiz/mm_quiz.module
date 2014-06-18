@@ -170,7 +170,7 @@ function mm_quiz_display_results($all_candidates_info){
 
     foreach($all_candidates_info as $candidate) {
         
-    echo "<h2 class='mm_name'><a href=/node/" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>';  
+    echo "<h2 class='mm_name'><a href=./node/" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>';  
 
     echo('<img src="'. drupal_realpath($candidate['photo']) . '"> alt="candidate photo"');
 
