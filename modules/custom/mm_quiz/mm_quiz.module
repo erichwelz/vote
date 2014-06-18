@@ -54,6 +54,7 @@ function mm_quiz_block_view($delta = '') {
       '#markup' => '</div>',
       '#weight' => 19,
     );
+
     break;
   }
   return $block;
@@ -191,7 +192,9 @@ function sort_scores($a, $b) {
 
 function mm_quiz_display_results($all_candidates_info){
 
+
   $results = "<div class='final_results'>";
+
 
   // sort by highest score
   usort($all_candidates_info, "sort_scores");
@@ -207,6 +210,5 @@ function mm_quiz_display_results($all_candidates_info){
 
   $results .= '</div>';
 
-  return $results;
 }
 
