@@ -1,0 +1,66 @@
+$heartWidth: 200px;
+$font: 'Source Sans Pro', sans-serif;
+$heartRed: #728bc8;
+$heartText: #941755;
+$weight: 700;
+.heart {
+    position: relative;
+    width: $heartWidth;
+    height: $heartWidth*.9;
+
+}
+
+.heart p {
+    font-size: $heartWidth*.15;
+    text-align: center;
+    padding: $heartWidth*.18;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.6), 0 -1px 1px rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    
+    font-family: $font;
+    color: $heartText;
+    font-weight: $weight;
+
+}
+.heart:before,
+.heart:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    left: $heartWidth/2;
+    top: 0;
+    width: $heartWidth/2;
+    height: $heartWidth*.8;
+    background: $heartRed;
+    -moz-border-radius: $heartWidth/2 $heartWidth/2 0 0;
+    border-radius: $heartWidth/2 $heartWidth/2 $heartWidth/3 $heartWidth/3;
+    -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+         -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+       -moz-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+         -o-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+}
+.heart:after {
+    left: 0;
+    z-index: -2;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+       -moz-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+         -o-transform-origin: 100% 100%;
+            transform-origin :100% 100%;
+            box-shadow: 1px 7px 15px rgba(0, 0, 0, 0.8), inset 3px 0 2px rgba(255, 255, 255, 0.4), inset 0 3px 0px rgba(255, 255, 255, 0.5), inset -2px -3px 0px rgba(143, 128, 82, 0.6);
+}
+
+.htwo {
+    left: 300px;
+}

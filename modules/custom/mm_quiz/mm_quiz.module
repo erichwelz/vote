@@ -34,14 +34,32 @@ function mm_quiz_block_view($delta = '') {
     $form = drupal_get_form($type . '_node_form', $node);
 
       // Define our subject
-    $block['subject'] = t("Mayor Me");
+
+    $block['subject'] = '<header class="landingPage">
+  <div class="heart"><p>Mayor Me!</p><div>
+  <div class="heart htwo"><p>Yes to LRT!</p><div>
+  <h1>Will You Mayor Me?</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim veritatis repellat culpa doloremque totam sunt eius fugiat libero, optio. Obcaecati eaque rem cumque, earum est aperiam eos sit laboriosam labore!</p>
+  <a href="#questions"><button>Mayor Me!</button></a>
+</header>';
+
 
       // Define what the content of our block will be
-    $block['content']['asdf'] = $form;
+    $block['content']['top'] = array(
+      '#markup' => '<div class="main">',
+      '#weight' => -19,
+    );
+    $block['content']['erich'] = $form;
+    $block['content']['bottom'] = array(
+      '#markup' => '</div>',
+      '#weight' => 19,
+    );
     break;
   }
   return $block;
+
 }
+
 
 function mm_quiz_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'candidate_node_form' && !user_is_logged_in()) {
@@ -61,10 +79,15 @@ function mm_quiz_form_alter(&$form, &$form_state, $form_id) {
     $form['#validate'][] = 'mm_quiz_validate_answers';
 
     // Check form state for candidate results.
-    // Display results.
-    $form['results'] = array(
-      '#markup' => '<h1>Mayor Me Logo</h1>',
-    );
+    if (!empty($form_state['mm_results'])) {
+      // Display results.
+      $form['asdf'] = array(
+        '#markup' => $form_state['mm_results'],
+        '#weight' => 999,
+      );
+    }
+    // dsm('form');
+    // dsm($form);
   }
 }
 
@@ -81,10 +104,14 @@ function mm_quiz_validate_answers($form, &$form_state) {
   // Get all candidates information
   $all_candidates_info = mm_quiz_get_all_candidates_info($num_qs);
 
+  // Calculate results.
   mm_quiz_get_all_scores($num_qs, $all_candidates_info, $user_answers);
 
-  // Calculate & Display results.
-  mm_quiz_display_results($all_candidates_info);
+  // Render results.
+  $results = mm_quiz_display_results($all_candidates_info);
+
+  // Add our results to form state array.
+  $form_state['mm_results'] = $results;
 }
 
 function mm_quiz_get_num_qs() {
@@ -99,7 +126,7 @@ function mm_quiz_get_user_answers($form_state, $num_qs) {
 
     array_push($user_answers, $answer);
   } 
-   return $user_answers;
+  return $user_answers;
 }
 
 function mm_quiz_get_all_candidates_info($num_qs){
@@ -123,21 +150,21 @@ function mm_quiz_get_all_candidates_info($num_qs){
     $all_candidates_info[$i]['summary'] = $candidates_info[$i]->{'body'}['und'][0]['summary']; 
 
     for ($j = 1; $j <= $num_qs; $j++) {
-    $all_candidates_info[$i]['answer'][$j] = $candidates_info[$i]->{"field_question_" . $j}['und'][0]['value'];
+      $all_candidates_info[$i]['answer'][$j] = $candidates_info[$i]->{"field_question_" . $j}['und'][0]['value'];
     }
 
-}
-  dsm('all_candidates_info');
-  dsm($all_candidates_info);
+  }
+  // dsm('all_candidates_info');
+  // dsm($all_candidates_info);
 
   return $all_candidates_info ;
 }
 
 function mm_quiz_get_all_scores($num_qs, &$all_candidates_info, $user_answers){
-  
+
   for ($i = 1; $i <= count($all_candidates_info); $i++) {  
   // sets score for given candidate    
-  $score = 0;
+    $score = 0;
     //$ j is question index
     for ($j = 1; $j <= ($num_qs); $j++) { 
 
@@ -163,18 +190,23 @@ function sort_scores($a, $b) {
 } 
 
 function mm_quiz_display_results($all_candidates_info){
-    
- // sort by highest score
- 
-   usort($all_candidates_info, "sort_scores");
 
-    foreach($all_candidates_info as $candidate) {
-        
-    echo "<h2 class='mm_name'><a href=./node/" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>';  
+  $results = "<div class='final_results'>";
 
-    echo('<img src="'. drupal_realpath($candidate['photo']) . '"> alt="candidate photo"');
+  // sort by highest score
+  usort($all_candidates_info, "sort_scores");
 
-    echo('<h3 class = "mm_score">' . $candidate['score'] . ' %</h3>');
+  foreach($all_candidates_info as $candidate) {
+
+    $results .= "<h2 class='mm_name'><a href=./node/" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>';  
+
+    $results .= '<img src="'. drupal_realpath($candidate['photo']) . '"> alt="candidate photo"';
+
+    $results .= '<h3 class = "mm_score">' . $candidate['score'] . ' %</h3>';
   }
+
+  $results .= '</div>';
+
+  return $results;
 }
 

@@ -74,13 +74,6 @@
  */
 ?>
 
-<header class="landingPage">
-
-  <h1>Will You Mayor Me?</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim veritatis repellat culpa doloremque totam sunt eius fugiat libero, optio. Obcaecati eaque rem cumque, earum est aperiam eos sit laboriosam labore!</p>
-  <a href="#questions"><button>Mayor Me!</button></a>
-</header>
-
 <main id="questions">
   <section<?php print $content_column_class; ?>>
   <?php if (!empty($page['highlighted'])): ?>
@@ -105,13 +98,6 @@
   <?php endif; ?>
   <?php print render($page['content']); ?>
 </section>
-
-<?php if (!empty($page['sidebar_second'])): ?>
-  <aside class="col-sm-3" role="complementary">
-    <?php print render($page['sidebar_second']); ?>
-  </aside>  <!-- /#sidebar-second -->
-<?php endif; ?>
-
 
 <!-- </div>
 </div> -->

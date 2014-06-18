@@ -1,4 +1,6 @@
 @import '_type';
+@import '_clearfix';
+@import '_heart';
 
 
 .form-radios div:first-child {
@@ -14,25 +16,39 @@ body{
 	padding: 0;
 }
 
-main {
-	position: absolute;
+header {
+	height: 1000px;
+}
+
+.main {
+	
 	top: 100%;
 	min-height: 100%;
 	background: purple;
 	width: 100%;
 	margin: 0;
 	left: 0;
+	color:red;
+}
 
+.landingPage {
+	top:0;
+	color:red;
 }
 
 footer {
 	position: fixed;
 	bottom: 0;
 	background: blue;
-	
+	width: 100%;
+
 }
 
+footer.footer.container {
+	width: 100%;
+}
 
-
-
+section.col-sm-9 {
+	width: 100%;
+}
 
