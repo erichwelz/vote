@@ -139,6 +139,7 @@ function mm_quiz_get_all_candidates_info($num_qs){
 
   $all_candidates_info = array();
   for ($i = 1; $i <= count($candidates_info); $i++) { 
+
     $all_candidates_info[$i]['name'] = $candidates_info[$i]->{"title"};
     $all_candidates_info[$i]['photo'] = $candidates_info[$i]->field_picture['und'][0]['uri'];
     $all_candidates_info[$i]['node_id'] = $candidates_info[$i]->{'nid'};
@@ -195,12 +196,13 @@ function mm_quiz_display_results($all_candidates_info){
   usort($all_candidates_info, "sort_scores");
 
   foreach($all_candidates_info as $candidate) {
-
-    $results .= "<h2 class='mm_name'><a href=./node/" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>';  
+    $results .= "<div class='single_candidate'>";
+    $results .= "<h2 class='mm_name'><a href=#" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>';  
 
     $results .= '<img src="'. drupal_realpath($candidate['photo']) . '"> alt="candidate photo"';
 
     $results .= '<h3 class = "mm_score">' . $candidate['score'] . ' %</h3>';
+    $results .= '</div>';
   }
 
   $results .= '</div>';
