@@ -38,13 +38,13 @@ function mm_quiz_block_view($delta = '') {
     $block['subject'] = '<header class="landingPage">
   <h1>Will You Mayor Me?</h1>
   <p>With over 60 candidates, and counting, running for Mayor of Toronto in 2014, we\'re here to help you find your perfect match!</p>
-  <button><a href="#questions">Mayor Me!</a></button>
+  <button><a href="#thequestions">Mayor Me!</a></button>
 </header>';
 
 
     
     $block['content']['erich'] = $form;
-    $block['content']['erich']['#prefix'] = '<div class="main" id="questions">';
+    $block['content']['erich']['#prefix'] = '<div class="main" id="thequestions">';
     $block['content']['erich']['#suffix'] = '</div>';
 
     break;
@@ -84,6 +84,8 @@ function mm_quiz_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+
+
 function mm_quiz_validate_answers($form, &$form_state) {
   // This should be preventing a "save".
   $form_state['rebuild'] = TRUE;
@@ -105,6 +107,7 @@ function mm_quiz_validate_answers($form, &$form_state) {
 
   // Add our results to form state array.
   $form_state['mm_results'] = $results;
+
 }
 
 function mm_quiz_get_num_qs() {

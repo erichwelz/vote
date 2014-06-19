@@ -30,7 +30,7 @@ header {
 		width: 30%;
 		float: left;
 		margin-top: 7%;
-		margin-left: 4%;
+		margin-left: 5%;
 		text-align: left;
 		color: #ededed;
 		font-weight: 300;
@@ -125,18 +125,69 @@ main {
 	
 	// top: 100%;
 	// min-height: 100%;
-	background: purple;
+	background: $questionsGreen;
 	width: 100%;
 	margin: 0;
 	left: 0;
 	color:$white;
-	border: 4px solid blue;
-	padding: 10%;
+	 // padding: 10%;
 	font-size: 2.4rem;
 	line-height: 1.5;
 
 }
 
+input[type="radio"] {
+	-webkit-appearance: checkbox;
+
+
+}
+
+.form-type-radios {
+	padding: 2% 10%;
+	font-size: 4.2rem;
+	& label {
+		padding-bottom: 3%;
+	}
+}
+
+.form-item-field-question-1-und label{
+	margin-top:5%;
+}
+
+.form-radios {
+	margin-left: 7%;
+}
+
+.form-submit{
+		position: relative;
+		border: none;
+		font-size: 3.8rem;
+		width: 31rem;
+		margin-top: 10%;
+		margin-left: 39%;
+		height: 8rem;
+		text-transform: uppercase;
+		text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+		background: $black;
+		color: $white;
+		box-shadow: inset 0 -5px rgba(0,0,0, 0.3);
+		box-shadow: 0 3px 1px rgba(0,0,0,0.5);
+		&:active {
+			top: 1px;
+			outline: none;
+			box-shadow: none;
+			border: 0;
+		}
+		&:focus {
+			outline: none;
+		}
+		&:hover {
+			text-transform: uppercase;
+		text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+		background: $black;
+		color: $white;
+		}
+}
 
 footer {
 	// position: fixed;
@@ -156,9 +207,26 @@ section.col-sm-9 {
 }
 
 
+
+
+/*====================================================================
+RESULTS
+=================================================================*/
+
 .final_results {
 	background: yellow;
-	width: 500px;
-	height: 200px;
+	width: 100%;
 	border: 1px solid black;
+	margin-top:5%;
+	padding: 10%;
+	padding-top:3%;     
+}
+
+.mm_name {
+	margin-top:8%;
+	font-size:4rem;
+}
+
+.mm_name:first-child {
+	font-size:10rem;
 }
