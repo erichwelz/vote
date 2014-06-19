@@ -1,3 +1,4 @@
+@charset "UTF-8";
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block; }
 
@@ -146,6 +147,13 @@ body {
   margin: 0;
   color: #353535; }
 
+a {
+  text-decoration: none;
+  color: #ededed; }
+  a:hover {
+    text-decoration: none;
+    color: #353535; }
+
 header {
   padding: 20% 0;
   text-align: center;
@@ -290,27 +298,62 @@ RESULTS
 .final_results {
   background: #d85e0b;
   width: 100%;
-  border: 1px solid black;
   margin-top: 5%;
   padding: 10%;
   padding-top: 3%; }
 
 .single_candidate {
   margin-top: 8%;
-  font-size: 4rem; }
+  font-size: 4rem;
+  padding-bottom: 10%;
+  border-bottom: 1px solid #ededed; }
 
 .final_results div.single_candidate:first-child h2 {
-  font-size: 10rem; }
+  font-size: 10rem;
+  width: 100%; }
   .final_results div.single_candidate:first-child h2:before {
     content: 'Your best match is:';
     display: block;
     font-size: 6rem;
     color: #353535; }
-  .final_results div.single_candidate:first-child h2 .mm_score {
-    font-size: 10rem; }
+
+.final_results div.single_candidate.before_photo:first-child .mm_score {
+  font-size: 12rem;
+  color: #ededed; }
+
+.final_results div.single_candidate.before_photo:first-child .mm_summary {
+  font-size: 5rem;
+  color: #ededed;
+  text-transform: initial; }
+  .final_results div.single_candidate.before_photo:first-child .mm_summary:after {
+    content: '”'; }
+  .final_results div.single_candidate.before_photo:first-child .mm_summary:before {
+    content: '“'; }
 
 .overlay {
   display: none; }
 
 .mm_score {
-  font-size: 5rem; }
+  font-size: 7rem;
+  width: 100%; }
+
+.mm_summary {
+  font-size: 2.5rem;
+  color: #ededed;
+  text-transform: initial; }
+  .mm_summary:after {
+    content: '”'; }
+  .mm_summary:before {
+    content: '“'; }
+
+.before_photo {
+  float: left;
+  width: 60%; }
+
+.after_photo {
+  width: 40%;
+  padding: 1%;
+  float: right; }
+
+.mm_name {
+  font-size: 4rem; }

@@ -204,12 +204,15 @@ function mm_quiz_display_results($all_candidates_info){
   usort($all_candidates_info, "sort_scores");
 
   foreach($all_candidates_info as $candidate) {
+    
     $results .= "<div class='single_candidate'>";
-    $results .= "<h2 class='mm_name'><a href=#" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>';  
+    $results .= "<div class='before_photo'>";
+    $results .= "<h2 class='mm_name'><a href=#" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>'; 
     $results .= '<h3 class = "mm_score">' . $candidate['score'] . ' %</h3>';
+    $results .= "</div>";
+    $results .= "<div class='after_photo'>";
     $results .=  $candidate['photo'];
-
-
+    $results .= '</div>';
     $results .= '<p class="mm_summary">' . $candidate['summary'] . '</p>';
     $results .= '</div>';
 
