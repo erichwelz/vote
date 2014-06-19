@@ -202,5 +202,7 @@ function mm_quiz_display_results($all_candidates_info){
 
   $results .= '</div>';
 
+  return $results;
+
 }
 
