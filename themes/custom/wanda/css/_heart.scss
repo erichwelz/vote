@@ -3,14 +3,14 @@ $font: 'Source Sans Pro', sans-serif;
 $heartRed: #728bc8;
 $heartText: #941755;
 $weight: 700;
-.heart {
+div.heart {
     position: relative;
     width: $heartWidth;
     height: $heartWidth*.9;
 
 }
 
-.heart p {
+div.heart p {
     font-size: $heartWidth*.15;
     text-align: center;
     padding: $heartWidth*.18;
@@ -22,8 +22,8 @@ $weight: 700;
     font-weight: $weight;
 
 }
-.heart:before,
-.heart:after {
+div.heart:before,
+div.heart:after {
     z-index: -1;
     position: absolute;
     content: "";
@@ -45,7 +45,7 @@ $weight: 700;
          -o-transform-origin: 0 100%;
             transform-origin: 0 100%;
 }
-.heart:after {
+div.heart:after {
     left: 0;
     z-index: -2;
     -webkit-transform: rotate(45deg);
