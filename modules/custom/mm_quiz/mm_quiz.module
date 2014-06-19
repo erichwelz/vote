@@ -131,8 +131,8 @@ function mm_quiz_get_all_candidates_info($num_qs){
 
   $candidates_info = node_load_multiple(array_keys($result['node']));
 
-  // dsm('candidates_info');
-  // dsm($candidates_info);
+  dsm('candidates_info');
+  dsm($candidates_info);
 
   $all_candidates_info = array();
   for ($i = 1; $i <= count($candidates_info); $i++) { 
@@ -147,8 +147,8 @@ function mm_quiz_get_all_candidates_info($num_qs){
     }
 
   }
-  // dsm('all_candidates_info');
-  // dsm($all_candidates_info);
+  dsm('all_candidates_info');
+  dsm($all_candidates_info);
 
   return $all_candidates_info ;
 }
