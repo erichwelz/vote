@@ -79,8 +79,8 @@ function mm_quiz_form_alter(&$form, &$form_state, $form_id) {
         '#weight' => 999,
       );
     }
-    // dsm('form');
-    // dsm($form);
+    dsm('form');
+    dsm($form);
   }
 }
 
