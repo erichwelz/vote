@@ -306,3 +306,11 @@ RESULTS
     display: block;
     font-size: 6rem;
     color: #353535; }
+  .final_results div.single_candidate:first-child h2 .mm_score {
+    font-size: 10rem; }
+
+.overlay {
+  display: none; }
+
+.mm_score {
+  font-size: 5rem; }
