@@ -36,24 +36,16 @@ function mm_quiz_block_view($delta = '') {
       // Define our subject
 
     $block['subject'] = '<header class="landingPage">
-  <div class="heart"><p>Mayor Me!</p><div>
-  <div class="heart htwo"><p>Yes to LRT!</p><div>
   <h1>Will You Mayor Me?</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim veritatis repellat culpa doloremque totam sunt eius fugiat libero, optio. Obcaecati eaque rem cumque, earum est aperiam eos sit laboriosam labore!</p>
   <a href="#questions"><button>Mayor Me!</button></a>
 </header>';
 
 
-      // Define what the content of our block will be
-    $block['content']['top'] = array(
-      '#markup' => '<div class="main">',
-      '#weight' => -19,
-    );
+    
     $block['content']['erich'] = $form;
-    $block['content']['bottom'] = array(
-      '#markup' => '</div>',
-      '#weight' => 19,
-    );
+    $block['content']['erich']['#prefix'] = '<div class="main">';
+    $block['content']['erich']['#suffix'] = '</div>';
 
     break;
   }
