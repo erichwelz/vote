@@ -288,16 +288,21 @@ section.col-sm-9 {
 RESULTS
 =================================================================*/
 .final_results {
-  background: yellow;
+  background: #d85e0b;
   width: 100%;
   border: 1px solid black;
   margin-top: 5%;
   padding: 10%;
   padding-top: 3%; }
 
-.mm_name {
+.single_candidate {
   margin-top: 8%;
   font-size: 4rem; }
 
-.mm_name:first-child {
+.final_results div.single_candidate:first-child h2 {
   font-size: 10rem; }
+  .final_results div.single_candidate:first-child h2:before {
+    content: 'Your best match is:';
+    display: block;
+    font-size: 6rem;
+    color: #353535; }
