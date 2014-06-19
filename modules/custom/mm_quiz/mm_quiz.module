@@ -202,7 +202,17 @@ function mm_quiz_display_results($all_candidates_info){
     $results .= '<img src="'. drupal_realpath($candidate['photo']) . '"> alt="candidate photo"';
 
     $results .= '<h3 class = "mm_score">' . $candidate['score'] . ' %</h3>';
-    $results .= '<p>' . $candidate['summary'] . '</p>';
+    $results .= '<p class="mm_summary">' . $candidate['summary'] . '</p>';
+    $results .= '</div>';
+
+    // Hidden summary for overlay.
+    $results .= "<div class='single_candidate overlay'>";
+    $results .= "<h2 class='mm_name'><a href=#" . $candidate['node_id'] . '>' .  $candidate['name'] . '</a></h2>';  
+
+    $results .= '<img src="'. drupal_realpath($candidate['photo']) . '"> alt="candidate photo"';
+
+    $results .= '<h3 class = "mm_score">' . $candidate['score'] . ' %</h3>';
+    $results .= '<p class= "mm_biography">' . $candidate['biography'] . '</p>';
     $results .= '</div>';
   }
 
