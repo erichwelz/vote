@@ -103,6 +103,7 @@
 </div> -->
 
 </main>
-<footer class="footer container">
+<!-- <footer class="footer container">
   <?php print render($page['footer']); ?>
 </footer>
+ -->
