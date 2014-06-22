@@ -2,6 +2,7 @@ name = Wanda Sub-theme
 description = A Theme Called Wanda
 core = 7.x
 base theme = bootstrap
+scripts[] = scripts.js
 
 
 ;;;;;;;;;;;;;;;;;;;;;

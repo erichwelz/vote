@@ -233,9 +233,11 @@ RESULTS
 	margin-top:8%;
 	font-size:4rem;
 	padding-bottom: 10%;
-	border-bottom: 1px solid $white;
 }
 
+.final_results div.single_candidate:first-child {
+	border-bottom: 1px solid white;
+}
 .final_results div.single_candidate:first-child h2{
 	font-size:10rem;
 	width: 100%;
@@ -300,4 +302,9 @@ RESULTS
 
 .mm_name {
   font-size: 4rem;
+}
+
+.single_candidate img {
+	border-radius: 15px;
+	padding-left: 1%;
 }

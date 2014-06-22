@@ -1,5 +1,7 @@
 <?php
 
+
+
 function mm_quiz_block_info() {
 
   // This is the quiz block
